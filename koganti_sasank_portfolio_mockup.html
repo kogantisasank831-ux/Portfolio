@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Koganti Sasank — Senior Data Scientist, Generative AI and Agentic Systems." />
+  <title>Koganti Sasank | Data Science & AI</title>
+
+  <style>
+    :root {
+      --bg: #07101f;
+      --bg-soft: #0c1729;
+      --card: rgba(18, 31, 52, 0.72);
+      --card-strong: #101d31;
+      --text: #f7f5f2;
+      --muted: #9eacc3;
+      --line: rgba(255,255,255,.10);
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --coral: #ff6b6b;
+      --blue: #38bdf8;
+      --green: #34d399;
+      --max: 1180px;
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 75% 12%, rgba(168,85,247,.12), transparent 28%),
+        radial-gradient(circle at 15% 75%, rgba(56,189,248,.08), transparent 32%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    section { scroll-margin-top: 100px; }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7,16,31,.75);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--purple), var(--pink), var(--coral));
+      box-shadow: 0 10px 30px rgba(168,85,247,.25);
+      font-weight: 900;
+      letter-spacing: -.08em;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      border: 1px solid rgba(255,255,255,.16);
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: calc(100vh - 78px);
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 72px;
+      padding-block: 78px 60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #d8ccff;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+    }
+
+    h1 {
+      font-size: clamp(3.6rem, 8vw, 7.4rem);
+      line-height: .88;
+      letter-spacing: -.075em;
+      margin: 0;
+      max-width: 760px;
+    }
+
+    h1 span {
+      display: block;
+      color: transparent;
+      background: linear-gradient(110deg, #fff 12%, #d9d0ff 48%, #ffb1c8 88%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .role {
+      margin: 32px 0 16px;
+      font-size: clamp(1.08rem, 2vw, 1.4rem);
+      color: #dbe5f4;
+      font-weight: 700;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 1.05rem;
+      margin: 0 0 34px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+
+    .btn {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      box-shadow: 0 16px 40px rgba(168,85,247,.22);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.04);
+    }
+
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 34px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.42rem;
+      letter-spacing: -.04em;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      position: relative;
+      width: min(430px, 84vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .orb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,.28), transparent 23%),
+        linear-gradient(145deg, var(--purple), var(--pink) 52%, var(--coral));
+      box-shadow:
+        0 50px 110px rgba(236,72,153,.22),
+        inset 0 0 40px rgba(255,255,255,.08);
+      animation: breathe 7s ease-in-out infinite;
+      z-index: -2;
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: 17px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); filter: hue-rotate(0deg); }
+      50% { transform: scale(1.025); filter: hue-rotate(8deg); }
+    }
+
+    .monogram {
+      font-size: clamp(6rem, 14vw, 10rem);
+      font-weight: 950;
+      letter-spacing: -.12em;
+      line-height: 1;
+      text-shadow: 0 8px 34px rgba(0,0,0,.18);
+      transform: translateX(-.07em);
+    }
+
+    .monogram-sub {
+      position: absolute;
+      bottom: 25%;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    .orbit {
+      position: absolute;
+      width: 112%;
+      height: 112%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      transform: rotate(-18deg);
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 7px rgba(255,255,255,.08);
+    }
+
+    .orbit::before { left: 8%; top: 23%; }
+    .orbit::after { right: 6%; bottom: 25%; }
+
+    .float-tag {
+      position: absolute;
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(7,16,31,.7);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .tag-1 { top: 10%; right: -2%; }
+    .tag-2 { bottom: 14%; left: -5%; }
+    .tag-3 { bottom: 2%; right: 10%; }
+
+    .section {
+      padding-block: 110px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-kicker {
+      color: #c8b9ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 16px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: clamp(2.3rem, 5vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.06em;
+      margin: 0;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 1.04rem;
+      margin: 0;
+      max-width: 640px;
+    }
+
+    .about-grid,
+    .project-grid,
+    .capability-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .about-grid { grid-template-columns: 1.35fr .65fr; }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.15);
+    }
+
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+      letter-spacing: -.025em;
+    }
+
+    .panel p { color: var(--muted); margin: 0; }
+
+    .facts {
+      display: grid;
+      gap: 18px;
+    }
+
+    .fact {
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact:last-child { border-bottom: 0; padding-bottom: 0; }
+    .fact span { color: var(--muted); display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .fact strong { display: block; margin-top: 4px; }
+
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .project {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      top: -90px;
+      right: -70px;
+      background: radial-gradient(circle, rgba(168,85,247,.28), transparent 68%);
+    }
+
+    .project-number {
+      color: #d0c5ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .78rem;
+    }
+
+    .project h3 {
+      font-size: 1.55rem;
+      max-width: 410px;
+      margin: 54px 0 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: #cad5e6;
+      background: rgba(255,255,255,.035);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .capability-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .capability {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .capability-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(168,85,247,.12);
+      border: 1px solid rgba(168,85,247,.24);
+      margin-bottom: 42px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #d8ccff;
+      font-weight: 900;
+    }
+
+    .capability ul {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+      font-size: .9rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 104px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 52px;
+    }
+
+    .year {
+      color: #c9bbff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .78rem;
+      padding-top: 29px;
+    }
+
+    .experience-card {
+      position: relative;
+    }
+
+    .experience-card::before {
+      content: "";
+      position: absolute;
+      left: -33px;
+      top: 34px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 0 7px rgba(236,72,153,.10);
+    }
+
+    .experience-card h3 { margin-bottom: 4px; }
+    .company { color: #c5d1e3; font-weight: 700; margin-bottom: 16px; }
+    .experience-card ul {
+      color: var(--muted);
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 40px;
+      align-items: center;
+      padding: 48px;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 90% 20%, rgba(236,72,153,.24), transparent 32%),
+        linear-gradient(135deg, rgba(168,85,247,.15), rgba(56,189,248,.08));
+      border: 1px solid rgba(255,255,255,.13);
+    }
+
+    .contact-card h2 { font-size: clamp(2.5rem, 5vw, 5rem); }
+    .contact-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(7,16,31,.32);
+      color: #dce6f5;
+      font-weight: 750;
+    }
+
+    footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: .82rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        position: fixed;
+        inset: 78px 20px auto 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: #0c1729;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 24px 80px rgba(0,0,0,.35);
+      }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 56px;
+        gap: 28px;
+      }
+      .visual { min-height: 430px; }
+      .section-head,
+      .about-grid,
+      .contact-card { grid-template-columns: 1fr; }
+      .capability-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      .brand-text { display: none; }
+      .hero { min-height: auto; padding-block: 52px 70px; }
+      h1 { font-size: clamp(3.4rem, 18vw, 5rem); }
+      .visual { min-height: 350px; }
+      .orb { width: min(320px, 86vw); }
+      .metrics { gap: 22px; }
+      .project-grid,
+      .capability-grid { grid-template-columns: 1fr; }
+      .section { padding-block: 78px; }
+      .panel { padding: 24px; }
+      .timeline::before { left: 6px; }
+      .experience-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-left: 34px;
+      }
+      .year { padding-top: 0; }
+      .experience-card::before { left: -33px; top: 30px; }
+      .contact-card { padding: 30px 22px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="container">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">KS</span>
+        <span class="brand-text">Koganti Sasank<small>Data Science · AI</small></span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#capabilities">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#">Download résumé</a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+    </nav>
+  </div>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-content reveal">
+        <div class="eyebrow">Building data & AI products</div>
+        <h1>Koganti <span>Sasank</span></h1>
+        <div class="role">Senior Data Scientist · Generative AI & Agentic Systems</div>
+        <p class="hero-copy">
+          I build production-focused machine learning, optimization and AI solutions
+          that turn complex business problems into measurable outcomes.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View selected work <span>↗</span></a>
+          <a class="btn btn-secondary" href="#contact">Start a conversation</a>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><strong>4+</strong><span>Years experience</span></div>
+          <div class="metric"><strong>6+</strong><span>Major projects</span></div>
+          <div class="metric"><strong>3</strong><span>Industry domains</span></div>
+        </div>
+      </div>
+
+      <div class="visual reveal">
+        <div class="orb" aria-label="KS personal monogram">
+          <div class="orbit"></div>
+          <div class="monogram">KS</div>
+          <div class="monogram-sub">Data · AI · ML</div>
+          <span class="float-tag tag-1">GenAI</span>
+          <span class="float-tag tag-2">Optimization</span>
+          <span class="float-tag tag-3">Agents</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 / About</div>
+            <h2>A practical approach to intelligent products.</h2>
+          </div>
+          <p class="section-intro">
+            I combine data science, engineering and business context to create systems
+            that are useful beyond the notebook—solutions designed to operate reliably
+            in real workflows.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>About me</h3>
+            <p>
+              I am a Senior Data Scientist with experience building machine-learning,
+              optimization and analytics solutions across petrochemical, procurement
+              and sales domains. My current focus is production-grade generative AI,
+              agentic workflows, evaluation systems and technical leadership.
+            </p>
+          </article>
+
+          <aside class="panel facts reveal">
+            <div class="fact"><span>Current role</span><strong>Senior Data Scientist</strong></div>
+            <div class="fact"><span>Organization</span><strong>TCG Digital</strong></div>
+            <div class="fact"><span>Based in</span><strong>India</strong></div>
+            <div class="fact"><span>Focus</span><strong>Data Science · GenAI · Agents</strong></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">02 / Selected work</div>
+            <h2>Projects with measurable business impact.</h2>
+          </div>
+          <p class="section-intro">
+            These cards are intentionally outcome-led. Replace the sample wording
+            with exact metrics, architecture diagrams and links as your portfolio develops.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="panel project reveal">
+            <div>
+              <div class="project-number">PROJECT 01</div>
+              <h3>Petrochemical Yield Optimizer</h3>
+              <p>Combined predictive models with differential evolution to identify operating conditions that improve plant yield.</p>
+            </div>
+            <div class="tags">
+              <span class="chip">Python</span><span class="chip">Optimization</span>
+              <span class="chip">Machine Learning</span><span class="chip">FastAPI</span>
+            </div>
+          </article>
+
+          <article class="panel project reveal">
+            <div>
+              <div class="project-number">PROJECT 02</div>
+              <h3>Industrial Digital Twin</h3>
+              <p>Built backend and optimization components for a virtual plant used to test operational scenarios before real-world execution.</p>
+            </div>
+            <div class="tags">
+              <span class="chip">Digital Twin</span><span class="chip">APIs</span>
+              <span class="chip">Simulation</span><span class="chip">Docker</span>
+            </div>
+          </article>
+
+          <article class="panel project reveal">
+            <div>
+              <div class="project-number">PROJECT 03</div>
+              <h3>Procurement Intelligence</h3>
+              <p>Applied analytics and decision-support methods to help teams understand spend, suppliers and sourcing opportunities.</p>
+            </div>
+            <div class="tags">
+              <span class="chip">SQL</span><span class="chip">Analytics</span>
+              <span class="chip">Forecasting</span><span class="chip">Dashboards</span>
+            </div>
+          </article>
+
+          <article class="panel project reveal">
+            <div>
+              <div class="project-number">PROJECT 04</div>
+              <h3>Agentic Research Assistant</h3>
+              <p>A portfolio project for multi-step research, tool use, retrieval, evaluation and explainable answer generation.</p>
+            </div>
+            <div class="tags">
+              <span class="chip">LLMs</span><span class="chip">RAG</span>
+              <span class="chip">Agents</span><span class="chip">Evaluation</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="capabilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">03 / Capabilities</div>
+            <h2>Skills grouped by how I create value.</h2>
+          </div>
+          <p class="section-intro">
+            This avoids subjective percentage bars and gives recruiters a clearer
+            picture of where each skill fits in your delivery process.
+          </p>
+        </div>
+
+        <div class="capability-grid">
+          <article class="panel capability reveal">
+            <div class="capability-icon">DS</div>
+            <h3>Data Science</h3>
+            <ul><li>Python & SQL</li><li>Statistical modelling</li><li>Forecasting</li><li>Optimization</li></ul>
+          </article>
+
+          <article class="panel capability reveal">
+            <div class="capability-icon">AI</div>
+            <h3>Generative AI</h3>
+            <ul><li>RAG systems</li><li>Agent workflows</li><li>Tool calling</li><li>LLM evaluation</li></ul>
+          </article>
+
+          <article class="panel capability reveal">
+            <div class="capability-icon">EN</div>
+            <h3>Engineering</h3>
+            <ul><li>FastAPI & REST</li><li>Docker</li><li>Testing</li><li>Deployment</li></ul>
+          </article>
+
+          <article class="panel capability reveal">
+            <div class="capability-icon">TL</div>
+            <h3>Leadership</h3>
+            <ul><li>Architecture</li><li>Stakeholder alignment</li><li>Technical reviews</li><li>Mentoring</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Experience</div>
+            <h2>Experience presented as outcomes, not duties.</h2>
+          </div>
+          <p class="section-intro">
+            Keep each role concise on the main page. Detailed case studies can live
+            on separate project pages or open in expandable sections.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="experience-item reveal">
+            <div class="year">2022 — NOW</div>
+            <article class="panel experience-card">
+              <h3>Senior Data Scientist</h3>
+              <div class="company">TCG Digital</div>
+              <ul>
+                <li>Built machine-learning and optimization solutions for industrial use cases.</li>
+                <li>Designed APIs and backend components for production-facing applications.</li>
+                <li>Worked with domain experts and stakeholders to translate business constraints into technical systems.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="experience-item reveal">
+            <div class="year">EARLIER</div>
+            <article class="panel experience-card">
+              <h3>Previous Data & Analytics Experience</h3>
+              <div class="company">Add earlier roles here</div>
+              <ul>
+                <li>Summarize the role in three impact-led bullets.</li>
+                <li>Add one measurable business or engineering result.</li>
+                <li>Include only technologies relevant to the roles you are targeting.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <div class="section-kicker">05 / Contact</div>
+            <h2>Let’s build intelligent products.</h2>
+            <p class="section-intro" style="margin-top:22px;">
+              Available for conversations around senior data science, applied AI,
+              agentic systems and technical leadership opportunities.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:your.email@example.com"><span>Email</span><span>↗</span></a>
+            <a class="contact-link" href="#" target="_blank" rel="noreferrer"><span>LinkedIn</span><span>↗</span></a>
+            <a class="contact-link" href="#" target="_blank" rel="noreferrer"><span>GitHub</span><span>↗</span></a>
+            <a class="contact-link" href="#"><span>Download résumé</span><span>↓</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <span>© 2026 Koganti Sasank. All rights reserved.</span>
+    <span>Designed for Data Science · Generative AI · Intelligent Systems</span>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>
