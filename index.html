@@ -30,7 +30,7 @@
       --coral: #ff6b6b;
       --blue: #38bdf8;
       --green: #34d399;
-      --max: 1180px;
+      --max: 1080px;
       --radius: 24px;
     }
 
@@ -198,8 +198,8 @@
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       align-items: center;
-      gap: 52px;
-      padding-block: 46px 42px;
+      gap: 44px;
+      padding-block: 36px 34px;
     }
 
     .eyebrow {
@@ -222,7 +222,7 @@
     }
 
     h1 {
-      font-size: clamp(3.5rem, 7vw, 6.25rem);
+      font-size: clamp(3.4rem, 6.4vw, 5.65rem);
       line-height: .88;
       letter-spacing: -.075em;
       margin: 0;
@@ -305,14 +305,14 @@
 
     .visual {
       position: relative;
-      min-height: 430px;
+      min-height: 380px;
       display: grid;
       place-items: center;
     }
 
     .orb {
       position: relative;
-      width: min(370px, 82vw);
+      width: min(330px, 82vw);
       aspect-ratio: 1;
       border-radius: 50%;
       display: grid;
@@ -411,7 +411,7 @@
     .tag-3 { bottom: 2%; right: 10%; }
 
     .section {
-      padding-block: 110px;
+      padding-block: 88px;
       border-top: 1px solid var(--line);
     }
 
@@ -538,6 +538,41 @@
       justify-content: space-between;
     }
 
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      color: #d8ccff;
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .supporting-work {
+      margin-top: 20px;
+      padding: 28px 30px;
+    }
+
+    .supporting-work h3 { margin-bottom: 20px; }
+
+    .supporting-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .supporting-item {
+      padding: 4px 22px;
+      border-left: 1px solid var(--line);
+    }
+
+    .supporting-item:first-child { padding-left: 0; border-left: 0; }
+    .supporting-item:last-child { padding-right: 0; }
+    .supporting-item strong { display: block; margin-bottom: 6px; font-size: .92rem; }
+    .supporting-item span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+
     .project::before {
       content: "";
       position: absolute;
@@ -663,6 +698,60 @@
       padding-left: 18px;
     }
 
+    .experience-details {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-details summary {
+      color: #d8ccff;
+      font-size: .82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .experience-details[open] summary { margin-bottom: 14px; }
+    .experience-details li + li { margin-top: 7px; }
+
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1.15fr;
+      gap: 20px;
+    }
+
+    .credential-card { min-height: 260px; }
+
+    .credential-label {
+      display: block;
+      margin-bottom: 26px;
+      color: #c8b9ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .credential-card h3 { font-size: 1.35rem; }
+    .credential-meta { color: var(--muted); margin-top: 8px; font-size: .88rem; }
+    .credential-card ul { color: var(--muted); margin: 18px 0 0; padding-left: 18px; }
+
+    .award-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .award {
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .award:first-child { padding-top: 0; border-top: 0; }
+    .award strong { display: block; }
+    .award span { color: var(--muted); font-size: .82rem; }
+
     .contact-card {
       display: grid;
       grid-template-columns: 1.2fr .8fr;
@@ -698,7 +787,10 @@
     :root[data-theme="light"] .section-kicker,
     :root[data-theme="light"] .project-number,
     :root[data-theme="light"] .year,
-    :root[data-theme="light"] .exploration-label { color: #6d28d9; }
+    :root[data-theme="light"] .exploration-label,
+    :root[data-theme="light"] .credential-label,
+    :root[data-theme="light"] .project-link,
+    :root[data-theme="light"] .experience-details summary { color: #6d28d9; }
 
     :root[data-theme="light"] h1 span {
       background: linear-gradient(110deg, #111827 12%, #6d28d9 52%, #be185d 90%);
@@ -773,6 +865,10 @@
       .about-grid,
       .contact-card { grid-template-columns: 1fr; }
       .capability-grid { grid-template-columns: repeat(2, 1fr); }
+      .credentials-grid { grid-template-columns: 1fr 1fr; }
+      .credential-card:last-child { grid-column: 1 / -1; }
+      .supporting-grid { grid-template-columns: repeat(2, 1fr); gap: 22px 0; }
+      .supporting-item:nth-child(3) { padding-left: 0; border-left: 0; }
     }
 
     @media (max-width: 650px) {
@@ -784,7 +880,18 @@
       .orb { width: min(280px, 78vw); }
       .metrics { gap: 22px; }
       .project-grid,
-      .capability-grid { grid-template-columns: 1fr; }
+      .capability-grid,
+      .credentials-grid,
+      .supporting-grid { grid-template-columns: 1fr; }
+      .credential-card:last-child { grid-column: auto; }
+      .supporting-item,
+      .supporting-item:first-child,
+      .supporting-item:nth-child(3) {
+        padding: 16px 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+      .supporting-item:first-child { padding-top: 0; border-top: 0; }
       .section { padding-block: 78px; }
       .panel { padding: 24px; }
       .exploration-note {
@@ -1034,15 +1141,26 @@
           <article class="panel project reveal">
             <div>
               <div class="project-number">PROJECT 06</div>
-              <h3>Global Drilling-Fluid Models</h3>
-              <p>Delivered global, local and grouped-location XGBoost models for rheology and thickening-time prediction across 1M+ records and 50+ locations in under two months.</p>
+              <h3>Agentic Recruitment Platform</h3>
+              <p>Architected the backend for an end-to-end recruitment product with six agents supporting job-description creation, résumé screening, interview questions, traceability, audit and workflow automation.</p>
+              <a class="project-link" href="https://github.com/kogantisasank831-ux/rms-app-optimized" target="_blank" rel="noreferrer">View repository <span aria-hidden="true">↗</span></a>
             </div>
             <div class="tags">
-              <span class="chip">XGBoost</span><span class="chip">scikit-learn</span>
-              <span class="chip">Feature Engineering</span><span class="chip">AutoML</span>
+              <span class="chip">LangGraph</span><span class="chip">Gemma 2B</span>
+              <span class="chip">Ollama</span><span class="chip">React</span>
             </div>
           </article>
         </div>
+
+        <article class="panel supporting-work reveal" aria-labelledby="frameworks-title">
+          <h3 id="frameworks-title">Reusable frameworks & engineering systems</h3>
+          <div class="supporting-grid">
+            <div class="supporting-item"><strong>AutoML Framework</strong><span>Reusable feature engineering, model selection, validation and reporting workflows.</span></div>
+            <div class="supporting-item"><strong>JADE Framework</strong><span>Configurable objectives, constraints and simulator interfaces for industrial optimization.</span></div>
+            <div class="supporting-item"><strong>Model Delivery CI/CD</strong><span>Security scans, tests, golden-dataset gates and automated API deployment.</span></div>
+            <div class="supporting-item"><strong>Simulator Integration</strong><span>Production connectors for process simulators, databases and engineering data sources.</span></div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -1111,6 +1229,13 @@
                 <li>Architected a multi-agent procurement platform and its asynchronous deployment design for up to 2,000 concurrent users.</li>
                 <li>Mentor 5–6 colleagues, directly managed two contributors, co-lead technical guilds and participate in hiring.</li>
               </ul>
+              <details class="experience-details">
+                <summary>Additional project highlights</summary>
+                <ul>
+                  <li>Led CataLLM, screening 50K+ patents and fine-tuning Gemma with QLoRA for evidence-backed research hypotheses.</li>
+                  <li>Built a private proposal-generation workflow using self-hosted Llama 3.1, vLLM and section-specific few-shot examples.</li>
+                </ul>
+              </details>
             </article>
           </div>
 
@@ -1124,8 +1249,60 @@
                 <li>Built real-time optimization and predictive modelling systems across petrochemical and drilling operations.</li>
                 <li>Created reusable optimization, AutoML and MLOps frameworks with automated testing, security and model-quality gates.</li>
               </ul>
+              <details class="experience-details">
+                <summary>Additional project highlights</summary>
+                <ul>
+                  <li>Delivered location-aware XGBoost models across 1M+ records and 50+ drilling locations in under two months.</li>
+                  <li>Reduced real-time optimizer runtime by approximately 90% using parallel candidate evaluation.</li>
+                </ul>
+              </details>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="credentials">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">05 / Beyond delivery</div>
+            <h2>Leadership, education and recognition.</h2>
+          </div>
+          <p class="section-intro">
+            Technical work supported by team leadership, a mathematical foundation and
+            recognition for production optimization delivery.
+          </p>
+        </div>
+
+        <div class="credentials-grid">
+          <article class="panel credential-card reveal">
+            <span class="credential-label">Education</span>
+            <h3>M.Sc. Mathematics</h3>
+            <div class="credential-meta">BITS Pilani · 2018–2022</div>
+            <p style="margin-top:18px;">A mathematical foundation for optimization, statistical modelling and machine learning.</p>
+          </article>
+
+          <article class="panel credential-card reveal">
+            <span class="credential-label">Leadership</span>
+            <h3>Building teams and practices</h3>
+            <ul>
+              <li>Lead the Agentic AI Innovation Guild.</li>
+              <li>Co-lead the DevOps and Optimization guilds.</li>
+              <li>Mentor 5–6 colleagues and directly led two contributors.</li>
+              <li>Interviewed 10–12 GenAI engineering candidates.</li>
+            </ul>
+          </article>
+
+          <article class="panel credential-card reveal">
+            <span class="credential-label">Recognition</span>
+            <h3>Delivery acknowledged</h3>
+            <div class="award-list">
+              <div class="award"><strong>Spot Award</strong><span>Real-time optimization delivery</span></div>
+              <div class="award"><strong>Team Spot Award</strong><span>Production optimization impact</span></div>
+              <div class="award"><strong>Promotion</strong><span>Senior Consultant · July 2025</span></div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1134,7 +1311,7 @@
       <div class="container">
         <div class="contact-card reveal">
           <div>
-            <div class="section-kicker">05 / Contact</div>
+            <div class="section-kicker">06 / Contact</div>
             <h2>Let’s build intelligent products.</h2>
             <p class="section-intro" style="margin-top:22px;">
               Open to senior data science, optimization, applied ML and technical
