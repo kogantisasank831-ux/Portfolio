@@ -6,6 +6,16 @@
   <meta name="description" content="Koganti Sasank — Senior Data Scientist specializing in Generative AI, agentic systems, applied machine learning and optimization." />
   <title>Koganti Sasank | Data Science & AI</title>
 
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = savedTheme || preferredTheme;
+    } catch (_) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
+
   <style>
     :root {
       --bg: #07101f;
@@ -24,6 +34,18 @@
       --radius: 24px;
     }
 
+    :root[data-theme="light"] {
+      --bg: #f5f7fb;
+      --bg-soft: #ffffff;
+      --card: rgba(255,255,255,.88);
+      --card-strong: #ffffff;
+      --text: #111827;
+      --muted: #5b6679;
+      --line: rgba(15,23,42,.12);
+    }
+
+    :root { color-scheme: dark; }
+    :root[data-theme="light"] { color-scheme: light; }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -52,6 +74,13 @@
       z-index: -1;
     }
 
+    :root[data-theme="light"] body::before {
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(15,23,42,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,.045) 1px, transparent 1px);
+    }
+
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
     section { scroll-margin-top: 100px; }
@@ -69,6 +98,8 @@
       background: rgba(7,16,31,.75);
       border-bottom: 1px solid var(--line);
     }
+
+    :root[data-theme="light"] .nav-wrap { background: rgba(245,247,251,.82); }
 
     nav {
       height: 78px;
@@ -96,6 +127,7 @@
       box-shadow: 0 10px 30px rgba(168,85,247,.25);
       font-weight: 900;
       letter-spacing: -.08em;
+      color: #ffffff;
     }
 
     .brand small {
@@ -137,13 +169,37 @@
       cursor: pointer;
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .theme-btn:hover { transform: translateY(-1px); }
+    .theme-btn .light-icon { display: none; }
+    :root[data-theme="light"] .theme-btn .dark-icon { display: none; }
+    :root[data-theme="light"] .theme-btn .light-icon { display: inline; }
+
     .hero {
-      min-height: calc(100vh - 78px);
+      min-height: calc(100svh - 70px);
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       align-items: center;
-      gap: 72px;
-      padding-block: 78px 60px;
+      gap: 52px;
+      padding-block: 46px 42px;
     }
 
     .eyebrow {
@@ -166,7 +222,7 @@
     }
 
     h1 {
-      font-size: clamp(3.6rem, 8vw, 7.4rem);
+      font-size: clamp(3.5rem, 7vw, 6.25rem);
       line-height: .88;
       letter-spacing: -.075em;
       margin: 0;
@@ -182,7 +238,7 @@
     }
 
     .role {
-      margin: 32px 0 16px;
+      margin: 24px 0 12px;
       font-size: clamp(1.08rem, 2vw, 1.4rem);
       color: #dbe5f4;
       font-weight: 700;
@@ -192,14 +248,14 @@
       color: var(--muted);
       max-width: 680px;
       font-size: 1.05rem;
-      margin: 0 0 34px;
+      margin: 0 0 26px;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 44px;
+      margin-bottom: 32px;
     }
 
     .btn {
@@ -220,6 +276,7 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--purple), var(--pink));
       box-shadow: 0 16px 40px rgba(168,85,247,.22);
+      color: #ffffff;
     }
 
     .btn-secondary {
@@ -248,14 +305,14 @@
 
     .visual {
       position: relative;
-      min-height: 520px;
+      min-height: 430px;
       display: grid;
       place-items: center;
     }
 
     .orb {
       position: relative;
-      width: min(430px, 84vw);
+      width: min(370px, 82vw);
       aspect-ratio: 1;
       border-radius: 50%;
       display: grid;
@@ -299,6 +356,7 @@
       line-height: 1;
       text-shadow: 0 8px 34px rgba(0,0,0,.18);
       transform: translateX(-.07em);
+      color: #ffffff;
     }
 
     .monogram-sub {
@@ -309,6 +367,7 @@
       letter-spacing: .28em;
       text-transform: uppercase;
       opacity: .85;
+      color: #ffffff;
     }
 
     .orbit {
@@ -635,6 +694,42 @@
       font-weight: 750;
     }
 
+    :root[data-theme="light"] .eyebrow,
+    :root[data-theme="light"] .section-kicker,
+    :root[data-theme="light"] .project-number,
+    :root[data-theme="light"] .year,
+    :root[data-theme="light"] .exploration-label { color: #6d28d9; }
+
+    :root[data-theme="light"] h1 span {
+      background: linear-gradient(110deg, #111827 12%, #6d28d9 52%, #be185d 90%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    :root[data-theme="light"] .role,
+    :root[data-theme="light"] .about-summary,
+    :root[data-theme="light"] .company { color: #27344a !important; }
+
+    :root[data-theme="light"] .panel {
+      background: linear-gradient(160deg, rgba(255,255,255,.96), rgba(248,250,252,.9));
+      box-shadow: 0 20px 55px rgba(15,23,42,.08);
+    }
+
+    :root[data-theme="light"] .chip {
+      color: #344258;
+      background: rgba(109,40,217,.045);
+    }
+
+    :root[data-theme="light"] .float-tag {
+      color: #ffffff;
+      background: rgba(17,24,39,.78);
+    }
+
+    :root[data-theme="light"] .contact-link {
+      color: #27344a;
+      background: rgba(255,255,255,.68);
+    }
+
     footer {
       padding: 30px 0 42px;
       color: var(--muted);
@@ -659,7 +754,7 @@
         display: none;
         flex-direction: column;
         align-items: stretch;
-        background: #0c1729;
+        background: var(--bg-soft);
         border: 1px solid var(--line);
         border-radius: 18px;
         padding: 20px;
@@ -669,10 +764,11 @@
       .menu-btn { display: block; }
       .hero {
         grid-template-columns: 1fr;
-        padding-top: 56px;
-        gap: 28px;
+        min-height: auto;
+        padding-top: 48px;
+        gap: 20px;
       }
-      .visual { min-height: 430px; }
+      .visual { min-height: 370px; }
       .section-head,
       .about-grid,
       .contact-card { grid-template-columns: 1fr; }
@@ -682,10 +778,10 @@
     @media (max-width: 650px) {
       .container { width: min(calc(100% - 28px), var(--max)); }
       .brand-text { display: none; }
-      .hero { min-height: auto; padding-block: 52px 70px; }
-      h1 { font-size: clamp(3.4rem, 18vw, 5rem); }
-      .visual { min-height: 350px; }
-      .orb { width: min(320px, 86vw); }
+      .hero { padding-block: 40px 58px; }
+      h1 { font-size: clamp(3.1rem, 15vw, 4.6rem); }
+      .visual { min-height: 310px; }
+      .orb { width: min(280px, 78vw); }
       .metrics { gap: 22px; }
       .project-grid,
       .capability-grid { grid-template-columns: 1fr; }
@@ -705,6 +801,39 @@
       .experience-card::before { left: -33px; top: 30px; }
       .contact-card { padding: 30px 22px; }
       footer { flex-direction: column; }
+    }
+
+    @media (max-width: 430px) {
+      nav { height: 68px; }
+      .nav-links { inset: 68px 14px auto 14px; }
+      .brand-mark { width: 38px; height: 38px; border-radius: 12px; }
+      .menu-btn,
+      .theme-btn { width: 40px; height: 40px; }
+      .hero { padding-block: 32px 48px; gap: 14px; }
+      .eyebrow { margin-bottom: 16px; font-size: .7rem; }
+      h1 { font-size: clamp(2.85rem, 14.5vw, 3.85rem); }
+      .role { margin-top: 20px; font-size: 1rem; }
+      .hero-copy { font-size: .96rem; margin-bottom: 22px; }
+      .actions { gap: 10px; margin-bottom: 28px; }
+      .btn { width: 100%; min-height: 48px; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .metric strong { font-size: 1.2rem; }
+      .metric span { font-size: .62rem; line-height: 1.35; }
+      .visual { min-height: 270px; }
+      .orb { width: min(240px, 68vw); }
+      .float-tag { padding: 7px 10px; font-size: .64rem; }
+      .section { padding-block: 64px; }
+      h2 { font-size: clamp(2.2rem, 12vw, 3rem); }
+      .section-head { gap: 24px; margin-bottom: 34px; }
+      .contact-card { border-radius: 24px; }
+    }
+
+    @media (max-width: 370px) {
+      .container { width: min(calc(100% - 22px), var(--max)); }
+      h1 { font-size: 2.75rem; }
+      .visual { min-height: 245px; }
+      .orb { width: 215px; }
+      .metrics { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -728,10 +857,16 @@
         <a href="#capabilities">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
-        <a class="nav-cta" href="Koganti_Sasank_GenAI_Resume_Improved.docx" download>Download résumé</a>
+        <a class="nav-cta" href="Koganti_Sasank_Resume.pdf" download>Download résumé</a>
       </div>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light theme" title="Change color theme">
+          <span class="dark-icon" aria-hidden="true">☀</span>
+          <span class="light-icon" aria-hidden="true">☾</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
     </nav>
   </div>
 
@@ -1008,9 +1143,9 @@
           </div>
 
           <div class="contact-links">
-            <a class="contact-link" href="mailto:k.sasank16@gmail.com"><span>Email</span><span>↗</span></a>
+            <a class="contact-link" href="mailto:kogantisasank831@gmail.com"><span>Email</span><span>↗</span></a>
             <a class="contact-link" href="https://github.com/kogantisasank831-ux" target="_blank" rel="noreferrer"><span>GitHub</span><span>↗</span></a>
-            <a class="contact-link" href="Koganti_Sasank_GenAI_Resume_Improved.docx" download><span>Download résumé</span><span>↓</span></a>
+            <a class="contact-link" href="Koganti_Sasank_Resume.pdf" download><span>Download résumé</span><span>↓</span></a>
           </div>
         </div>
       </div>
@@ -1025,10 +1160,31 @@
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
+    const themeBtn = document.getElementById('themeBtn');
 
-    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    const updateThemeButton = () => {
+      const isLight = document.documentElement.dataset.theme === 'light';
+      themeBtn.setAttribute('aria-label', `Switch to ${isLight ? 'dark' : 'light'} theme`);
+    };
+
+    themeBtn.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = nextTheme;
+      try { localStorage.setItem('portfolio-theme', nextTheme); } catch (_) {}
+      updateThemeButton();
+    });
+
+    updateThemeButton();
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
     });
 
     const revealObserver = new IntersectionObserver((entries) => {
